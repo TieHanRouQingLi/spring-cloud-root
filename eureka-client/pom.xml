@@ -11,6 +11,10 @@
 
     <artifactId>eureka-client</artifactId>
 
+
+
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
