@@ -1,0 +1,37 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:admin@172.16.10.179:18761/eureka/
+  instance:
+    lease-renewal-interval-in-seconds: 10 #客户端心跳时间
+    lease-expiration-duration-in-seconds: 20 #服务器未接到心跳的发呆时间
+server:
+  port: 18764
+spring:
+  datasource:
+    platform: mysql
+    url: jdbc:mysql://172.16.10.178:3306/oil-business?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: airport
+    driver-class-name: com.mysql.jdbc.Driver
+  application:
+    name: service-for-business
+  mvc:
+    servlet:
+      load-on-startup: 1
+
+mybatis:
+  typeAliasesPackage: com.ias.oil.business.model
+  mapper-locations: classpath:mappers/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+pagehelper:
+  helperDialect: mysql
+  reasonable: false
+  params: count=countSql
+
+logging:
+  level:
+    root: INFO
+  path: ../logs/oil/
+  config: classpath:logback-spring.xml

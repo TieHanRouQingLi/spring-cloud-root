@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+    <!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->
+    <property name="LOG_HOME" value="./my-logs" />
+    <!-- 控制台输出 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!--设置控制台的输出级别为“ERROR”级别-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <!--设置控制台的日志输出格式-->
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+            <pattern>%d{yyyy-MM-dd HH} [%thread] %-5level %logger{50} - %msg  %n</pattern>
+        </encoder>
+    </appender>
+
+    <!--info级别的日志文件设置-->
+    <appender name="INFO_FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--日志级别设置-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <!--临时文件的保存位置及名称-->
+        <File>${LOG_HOME}/my-info.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--临时文件大小保存到一定要求后，更改文件名，成为历史日志文件-->
+            <fileNamePattern>${LOG_HOME}/info-%d{yyyyMMdd}.log.%i</fileNamePattern>
+            <!--保存文件的要求，达到要求后，创建新的日志文件-->
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>20MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <!--控制日志信息保存格式-->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH} %-5level %logger -%msg%n</pattern>
+        </layout>
+    </appender>
+
+    <!--error级别的日志文件设置-->
+    <appender name="ERROR_FILE"
+    class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <File>${LOG_HOME}/my-error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/error-%d{yyyyMMdd}.log.%i
+            </fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy
+            class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>20MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <!--控制日志信息保存格式-->
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH} %-5level %logger -%msg%n</pattern>
+        </layout>
+    </appender>
+
+    <!-- 日志输出级别 -->
+    <root level="ERROR">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="ERROR_FILE"/>
+        <appender-ref ref="INFO_FILE"/>
+    </root>
+</configuration>

@@ -18,8 +18,9 @@ public class EurekaClientApplication {
     @Value("${server.port}")
     String port;
 
-    @RequestMapping("/hi")
+    /*@RequestMapping("/hi2")
     public String home(@RequestParam(value = "name", defaultValue = "xiatian") String name) {
+        System.out.println("hi " + name + " ,i am from port:" + port);
         return "hi " + name + " ,i am from port:" + port;
-    }
+    }*/
 }

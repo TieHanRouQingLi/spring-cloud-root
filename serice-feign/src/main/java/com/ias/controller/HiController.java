@@ -1,4 +1,4 @@
-package com.its.controller;
+package com.ias.controller;
 
 import com.its.service.ServiceHi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,10 @@ public class HiController {
     @Autowired
     private ServiceHi serviceHi;
 
-    @RequestMapping(value = "/hi")
-    public String sayHi(@RequestParam(value = "name") String name){
+    @RequestMapping(value = "/hi1")
+    public String sayHi(@RequestParam(value = "name") String name)
+    {
+        System.out.println("11111111111111111");
         return serviceHi.sayHiFromClient(name);
     }
 
