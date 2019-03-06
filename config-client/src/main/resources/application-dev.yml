@@ -1,5 +1,5 @@
 server:
-  port: 8881
+  port: 8882
 spring:
   application:
     name: config-client
@@ -21,8 +21,12 @@ spring:
     username: guest
     password: guest
 
+management:
+  endpoints:
+    web:
+     exposure:
+      include: bus-refresh
 
-  management.endpoints.web.exposure.include=bus-refresh
 eureka:
   client:
     serviceUrl:
