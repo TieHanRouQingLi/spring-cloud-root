@@ -17,6 +17,7 @@
         <module>config-server</module>
         <module>config-client</module>
         <module>logback-server</module>
+        <module>service-geteway</module>
     </modules>
 
     <parent>

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
-//@Component
+@Component
 public class MyZullFilter extends ZuulFilter {
     private static Logger log = LoggerFactory.getLogger(MyZullFilter.class);
 
@@ -36,7 +36,7 @@ public class MyZullFilter extends ZuulFilter {
     //过滤器的具体逻辑。可用很复杂，包括查sql，nosql去判断该请求到底有没有权限访问。
     @Override
     public Object run() throws ZuulException {
-        RequestContext ctx = RequestContext.getCurrentContext();
+        /*RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
         log.info(String.format("%s >>> %s", request.getMethod(), request.getRequestURL().toString()));
         Object accessToken = request.getParameter("token");
@@ -49,7 +49,7 @@ public class MyZullFilter extends ZuulFilter {
             }catch (Exception e){}
 
             return null;
-        }
+        }*/
         log.info("ok");
         return null;
     }

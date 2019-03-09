@@ -22,5 +22,8 @@ zuul:
     api-l:
       path: /api-l/**
       serviceId: logback-server
+    api-c:
+      path: /api-c/**
+      serviceId: config-server
 
 
